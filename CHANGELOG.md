@@ -1,17 +1,17 @@
 # Changelog
 
-## 0.2.0b1 — Unreleased
+## 0.2.0 — 2026-11-05
 
-- Use the official RunPee app icon with publisher attribution.
+First regular release, available without enabling prerelease versions. Same runtime behavior as 0.2.0b1.
+
+## 0.2.0b1 — 2026-11-05
+
+First public beta.
+
+- Link a media player for automatic movie matching and seven native entities.
+- Track break-window countdowns locally, with pause handling and optional notification events.
+- Configure recommended-window filtering, timing offsets, and manual match overrides.
 - Recognize Plex Cast movie metadata mislabeled as `tvshow` without weakening episodic exclusions.
-
-## 0.2.0b0 — Unreleased
-
-- Replace fixed-movie setup with a linked media player and automatic content matching.
-- Add native status, window/countdown, remaining-window, and active-window entities.
-- Add recommended-window filtering, timing alignment, and current-playback match overrides.
-- Keep catalog reads cached and separate local timing from cloud requests.
-
-## 0.1.0b0 — Unreleased
-
-Initial development preview. No GitHub release or HACS catalog listing has been published.
+- Cache and pace catalog reads independently of countdown updates.
+- Include the official RunPee icon with publisher attribution.
+- Support Home Assistant 2026.10.0 and 2026.11.0.
