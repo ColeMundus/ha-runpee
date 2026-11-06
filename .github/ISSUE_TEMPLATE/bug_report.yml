@@ -1,0 +1,22 @@
+name: Bug report
+description: Report a reproducible integration problem
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, personal playback history, or full response bodies.
+  - type: input
+    id: versions
+    attributes:
+      label: Home Assistant and integration versions
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce and expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs

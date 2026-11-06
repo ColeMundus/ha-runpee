@@ -1,0 +1,83 @@
+{
+  "title": "RunPee",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Follow a media player",
+        "description": "Select a player with movie title and accurate playback position. Exact title/year matches only; ambiguous results need manual selection. Generic player metadata cannot identify editions. No account required.",
+        "data": {
+          "media_player": "Media player",
+          "country": "Country (two-letter code)"
+        }
+      },
+      "reconfigure": {
+        "title": "Follow a media player",
+        "description": "Select a player with movie title and accurate playback position. Exact title/year matches only; ambiguous results need manual selection. Generic player metadata cannot identify editions. No account required.",
+        "data": {
+          "media_player": "Media player",
+          "country": "Country (two-letter code)"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Choose a media player and a two-letter country code."
+    },
+    "abort": {
+      "already_configured": "This player is already configured.",
+      "reconfigure_successful": "Player configuration updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Playback timing",
+        "description": "Positive offset delays windows for pre-roll: movie position = player position \u2212 offset. Non-1\u00d7 speed is unsupported.",
+        "data": {
+          "recommended_windows_only": "Recommended windows only",
+          "timing_offset_seconds": "Timing offset (seconds)"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Enter a whole-second offset between \u22123600 and 3600."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": {
+        "name": "Status",
+        "state": {
+          "idle": "Idle",
+          "matching": "Matching",
+          "ready": "Ready",
+          "paused": "Paused",
+          "in_window": "In window",
+          "no_match": "No match",
+          "ambiguous": "Ambiguous",
+          "position_unavailable": "Position unavailable",
+          "error": "Error"
+        }
+      },
+      "movie": {
+        "name": "Movie"
+      },
+      "next_window": {
+        "name": "Next window"
+      },
+      "time_until_next_window": {
+        "name": "Time until next window"
+      },
+      "current_window_remaining": {
+        "name": "Current window remaining"
+      },
+      "upcoming_windows": {
+        "name": "Upcoming windows"
+      }
+    },
+    "binary_sensor": {
+      "window_active": {
+        "name": "Pee window active"
+      }
+    }
+  }
+}

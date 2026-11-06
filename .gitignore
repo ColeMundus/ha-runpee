@@ -1,0 +1,17 @@
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage*
+coverage.xml
+htmlcov/
+dist/
+.env
+.env.*
+AGENTS.md
+CLAUDE.md
+.hermes*
+.DS_Store

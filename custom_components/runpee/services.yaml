@@ -1,0 +1,63 @@
+search_movies:
+  name: Search movies
+  description: Search the entry's country. Results include release year when known, never synopses.
+  fields:
+    entry_id:
+      name: Entry
+      required: true
+      selector:
+        config_entry:
+          integration: runpee
+    query:
+      name: Movie title
+      required: true
+      selector:
+        text:
+get_peetimes:
+  name: Get Peetimes
+  description: Return spoiler-minimized movie data, cached for one day.
+  fields:
+    entry_id:
+      name: Entry
+      required: true
+      selector:
+        config_entry:
+          integration: runpee
+    movie_id:
+      name: Movie ID
+      description: Defaults to the current matched movie; required if no match exists.
+      selector:
+        number:
+          min: 1
+          max: 2147483647
+          step: 1
+          mode: box
+select_movie:
+  name: Select movie
+  description: Override the match for current playing or paused content only. Discarded when the content changes or playback ends. Candidate IDs are in Status attributes; arbitrary IDs are also accepted.
+  fields:
+    entry_id:
+      name: Entry
+      required: true
+      selector:
+        config_entry:
+          integration: runpee
+    movie_id:
+      name: Movie ID
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 2147483647
+          step: 1
+          mode: box
+clear_movie_override:
+  name: Clear movie override
+  description: Discard the current override and repeat conservative automatic matching.
+  fields:
+    entry_id:
+      name: Entry
+      required: true
+      selector:
+        config_entry:
+          integration: runpee

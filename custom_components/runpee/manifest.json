@@ -1,0 +1,14 @@
+{
+  "domain": "runpee",
+  "name": "RunPee",
+  "codeowners": [
+    "@ColeMundus"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/ColeMundus/ha-runpee",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/ColeMundus/ha-runpee/issues",
+  "requirements": [],
+  "version": "0.2.0b1"
+}
