@@ -15,15 +15,15 @@ Requires **Home Assistant 2026.10.0+**. Unofficial integration; no RunPee accoun
 
 ### HACS custom repository
 
-This is a **public beta**, installed as a custom repository rather than from the default HACS catalog.
+Install as a custom repository while default-catalog inclusion is pending.
 
 1. Open **HACS → Custom repositories** and add `https://github.com/ColeMundus/ha-runpee`, type **Integration**.
-2. Find **RunPee** in HACS, enable prerelease versions, and download `0.2.0b1`.
+2. Find **RunPee** in HACS and download the latest release.
 3. Restart Home Assistant, then follow [Setup](#setup).
 
 ### Manual
 
-Copy `custom_components/runpee` into `config/custom_components/`, then restart Home Assistant.
+Download the ZIP from the [latest release](https://github.com/ColeMundus/ha-runpee/releases/latest), extract it into your Home Assistant configuration directory, then restart Home Assistant.
 
 ## Setup
 

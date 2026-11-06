@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0 — 2026-11-05
+
+First regular release, available without enabling prerelease versions. Same runtime behavior as 0.2.0b1.
+
 ## 0.2.0b1 — 2026-11-05
 
 First public beta.
