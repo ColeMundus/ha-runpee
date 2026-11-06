@@ -5,7 +5,7 @@
 [![CI: workflow](docs/badges/ci.svg)](https://github.com/ColeMundus/ha-runpee/actions/workflows/ci.yml)
 [![HA tested: 2026.10.0 | 2026.11.0](docs/badges/compatibility.svg)](https://github.com/ColeMundus/ha-runpee/actions/workflows/ci.yml)
 [![License: MIT](docs/badges/license.svg)](LICENSE)
-[![Distribution: private preview](docs/badges/distribution.svg)](#installation)
+[![Distribution: HACS custom](docs/badges/distribution.svg)](#installation)
 
 Bathroom-break windows for the movie you're watching. Attach RunPee to a media player for automatic matching, countdowns, and optional notification automations. It never controls playback.
 
@@ -13,12 +13,12 @@ Requires **Home Assistant 2026.10.0+**. Unofficial integration; no RunPee accoun
 
 ## Installation
 
-### HACS — after public release
+### HACS custom repository
 
-The repository is currently private; HACS installation is pending public release and validation. It is not in the default catalog.
+This is a **public beta**, installed as a custom repository rather than from the default HACS catalog.
 
 1. Open **HACS → Custom repositories** and add `https://github.com/ColeMundus/ha-runpee`, type **Integration**.
-2. Find **RunPee** in HACS and download it.
+2. Find **RunPee** in HACS, enable prerelease versions, and download `0.2.0b1`.
 3. Restart Home Assistant, then follow [Setup](#setup).
 
 ### Manual
