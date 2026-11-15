@@ -17,7 +17,7 @@ latest = [
   {include-group = "tools"},
 ]
 tools = [
-  "ruff==0.17.3",
+  "ruff==0.17.4",
   "mypy==2.4.1",
   "pytest-cov==7.1.0",
 ]
