@@ -61,7 +61,12 @@ def test_literal_gate_all_outcomes():
         },
     }
     assert jobs["required"]["if"] == "always()"
-    assert set(jobs["required"]["needs"]) == {"checks", "hassfest", "hacs"}
+    assert set(jobs["required"]["needs"]) == {
+        "checks",
+        "hassfest",
+        "hacs",
+        "actionlint",
+    }
     assert jobs["hacs"]["if"] == "github.event.repository.private == false"
     command = jobs["required"]["steps"][-1]["run"]
     assert command == "python3 scripts/check_ci.py"
@@ -69,7 +74,12 @@ def test_literal_gate_all_outcomes():
     for private, checks, hassfest, hacs in itertools.product(
         (True, False), outcomes, outcomes, outcomes
     ):
-        results = {"checks": checks, "hassfest": hassfest, "hacs": hacs}
+        results = {
+            "checks": checks,
+            "hassfest": hassfest,
+            "hacs": hacs,
+            "actionlint": "success",
+        }
         result = subprocess.run(
             command,
             shell=True,
