@@ -93,8 +93,8 @@ def test_ci_gate_fails_closed() -> None:
         (True, False), outcomes, outcomes, outcomes
     ):
         assert accepted(
-            private,
-            {
+            private=private,
+            results={
                 "checks": checks,
                 "hassfest": hassfest,
                 "hacs": hacs,
@@ -106,8 +106,8 @@ def test_ci_gate_fails_closed() -> None:
         )
     for actionlint in ("failure", "cancelled", "skipped"):
         assert not accepted(
-            False,
-            {
+            private=False,
+            results={
                 "checks": "success",
                 "hassfest": "success",
                 "hacs": "success",
@@ -115,13 +115,14 @@ def test_ci_gate_fails_closed() -> None:
             },
         )
     assert not accepted(
-        False, {"checks": "success", "hassfest": "success", "hacs": "success"}
+        private=False,
+        results={"checks": "success", "hassfest": "success", "hacs": "success"},
     )
-    assert not accepted(False, {})
+    assert not accepted(private=False, results={})
 
 
 @pytest.mark.parametrize("private", [True, False])
-def test_literal_ci_entrypoint(private: bool) -> None:
+def test_literal_ci_entrypoint(*, private: bool) -> None:
     root = Path(__file__).resolve().parents[2]
     results = {
         "checks": "success",
