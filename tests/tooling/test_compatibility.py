@@ -65,6 +65,7 @@ def test_literal_gate_all_outcomes():
         == "${{ always() && needs.scope.outputs.docs_only != 'true' }}"
     )
     assert set(jobs["required"]["needs"]) == {
+        "scope",
         "checks",
         "hassfest",
         "hacs",
