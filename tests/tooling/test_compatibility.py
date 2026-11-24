@@ -2,8 +2,7 @@
 
 import itertools
 import json
-import os
-import subprocess
+import runpy
 from pathlib import Path
 
 import pytest
@@ -47,7 +46,7 @@ def test_reject_overlapping_or_other_harness_and_python(lane):
         validate(lane, dict(LANES[lane]), (3, 14, 2))
 
 
-def test_literal_gate_all_outcomes():
+def test_literal_gate_all_outcomes(monkeypatch):
     root = Path(__file__).resolve().parents[2]
     workflow = yaml.safe_load((root / ".github/workflows/ci.yml").read_text())
     jobs = workflow["jobs"]
@@ -86,22 +85,15 @@ def test_literal_gate_all_outcomes():
             "hacs": hacs,
             "actionlint": "success",
         }
-        result = subprocess.run(
-            command,
-            shell=True,
-            cwd=root,
-            env={
-                **os.environ,
-                "PRIVATE": json.dumps(private),
-                "NEEDS": json.dumps(
-                    {key: {"result": value} for key, value in results.items()}
-                ),
-            },
-            capture_output=True,
-            timeout=10,
-            check=False,
-        )
+        with monkeypatch.context() as environment:
+            environment.setenv("PRIVATE", json.dumps(private))
+            environment.setenv(
+                "NEEDS",
+                json.dumps({key: {"result": value} for key, value in results.items()}),
+            )
+            with pytest.raises(SystemExit) as exit_status:
+                runpy.run_path(str(root / "scripts/check_ci.py"), run_name="__main__")
         expected = checks == hassfest == "success" and hacs == (
             "skipped" if private else "success"
         )
-        assert result.returncode == (0 if expected else 1), results
+        assert exit_status.value.code == (0 if expected else 1), results
