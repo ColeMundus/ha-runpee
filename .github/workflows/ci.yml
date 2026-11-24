@@ -42,8 +42,6 @@ jobs:
       - run: uv run --no-sync ruff check .
       - run: uv run --no-sync ruff format --check .
       - run: uv run --no-sync mypy
-      - name: Actionlint
-        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
       - run: git diff --check
       - run: uv run --no-sync pytest --cov=custom_components.runpee --cov-branch --cov-report=term-missing --cov-report=xml --cov-fail-under=90
       - run: uv run --no-sync python scripts/package.py
@@ -53,6 +51,15 @@ jobs:
           path: dist/*
           if-no-files-found: error
           retention-days: 14
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Actionlint
+        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
   hassfest:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -74,7 +81,7 @@ jobs:
           category: integration
   required:
     if: always()
-    needs: [checks, hassfest, hacs]
+    needs: [checks, actionlint, hassfest, hacs]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

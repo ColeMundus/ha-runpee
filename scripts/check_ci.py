@@ -8,6 +8,7 @@ def accepted(private: bool, results: dict[str, str]) -> bool:
     """Require the whole checks matrix; only private HACS may explicitly skip."""
     return (
         results.get("checks") == "success"
+        and results.get("actionlint") == "success"
         and results.get("hassfest") == "success"
         and results.get("hacs") == ("skipped" if private else "success")
     )

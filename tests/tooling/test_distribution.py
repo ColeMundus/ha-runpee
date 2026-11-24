@@ -93,18 +93,42 @@ def test_ci_gate_fails_closed() -> None:
         (True, False), outcomes, outcomes, outcomes
     ):
         assert accepted(
-            private, {"checks": checks, "hassfest": hassfest, "hacs": hacs}
+            private,
+            {
+                "checks": checks,
+                "hassfest": hassfest,
+                "hacs": hacs,
+                "actionlint": "success",
+            },
         ) == (
             checks == hassfest == "success"
             and hacs == ("skipped" if private else "success")
         )
+    for actionlint in ("failure", "cancelled", "skipped"):
+        assert not accepted(
+            False,
+            {
+                "checks": "success",
+                "hassfest": "success",
+                "hacs": "success",
+                "actionlint": actionlint,
+            },
+        )
+    assert not accepted(
+        False, {"checks": "success", "hassfest": "success", "hacs": "success"}
+    )
     assert not accepted(False, {})
 
 
 @pytest.mark.parametrize("private", [True, False])
 def test_literal_ci_entrypoint(private: bool) -> None:
     root = Path(__file__).resolve().parents[2]
-    results = {"checks": "success", "hassfest": "success", "hacs": "skipped"}
+    results = {
+        "checks": "success",
+        "hassfest": "success",
+        "hacs": "skipped",
+        "actionlint": "success",
+    }
     env = {
         **os.environ,
         "PRIVATE": json.dumps(private),
