@@ -60,14 +60,20 @@ def test_literal_gate_all_outcomes():
             ]
         },
     }
-    assert jobs["required"]["if"] == "always()"
+    assert (
+        jobs["required"]["if"]
+        == "${{ always() && needs.scope.outputs.docs_only != 'true' }}"
+    )
     assert set(jobs["required"]["needs"]) == {
+        "scope",
         "checks",
         "hassfest",
         "hacs",
         "actionlint",
     }
-    assert jobs["hacs"]["if"] == "github.event.repository.private == false"
+    hacs_condition = jobs["hacs"]["if"]
+    assert "github.event.repository.private == false" in hacs_condition
+    assert "needs.scope.outputs.docs_only != 'true'" in hacs_condition
     command = jobs["required"]["steps"][-1]["run"]
     assert command == "python3 scripts/check_ci.py"
     outcomes = ("success", "failure", "skipped", "cancelled")
