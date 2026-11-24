@@ -65,3 +65,5 @@ This uses RunPee's **undocumented web API**, which may change or stop working. S
 Not endorsed by RunPee. [Source code is MIT licensed](LICENSE); RunPee artwork, trademarks, and service content are not. See the [ownership notice](custom_components/runpee/brand/NOTICE.md).
 
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Release checklist](docs/releasing.md)
+
+<!-- Temporary CI measurement full-01. This PR will be closed unmerged. -->
