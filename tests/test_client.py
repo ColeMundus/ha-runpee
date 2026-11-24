@@ -206,9 +206,9 @@ def test_external_socket_is_blocked_even_with_http_fixture(http):
 
     import pytest_socket
 
-    with socket.socket() as connection:
-        with (
-            pytest.warns(UserWarning, match="203.0.113.1"),
-            pytest.raises(pytest_socket.SocketConnectBlockedError),
-        ):
-            connection.connect(("203.0.113.1", 443))
+    with (
+        socket.socket() as connection,
+        pytest.warns(UserWarning, match="203.0.113.1"),
+        pytest.raises(pytest_socket.SocketConnectBlockedError),
+    ):
+        connection.connect(("203.0.113.1", 443))
