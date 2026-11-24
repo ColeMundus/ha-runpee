@@ -1,6 +1,7 @@
 """Reject drift from the locked, mutually exclusive compatibility lanes."""
 
 import argparse
+import contextlib
 import importlib
 import json
 import sys
@@ -42,10 +43,8 @@ def main() -> None:
     args = parser.parse_args()
     installed = {}
     for name in set(LANES[args.lane]) | set(HARNESSES):
-        try:
+        with contextlib.suppress(PackageNotFoundError):
             installed[name] = version(name)
-        except PackageNotFoundError:
-            pass
     validate(args.lane, installed, sys.version_info[:3])
     # Core must install its HTTPX/validation aliases before dependent imports.
     modules = ["homeassistant", "aiohttp", "probatio"]
